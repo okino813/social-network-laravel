@@ -77,3 +77,5 @@ RUN <<EOF
   php artisan optimize:clear
   php artisan optimize
 EOF
+
+CMD ["php-fpm"]
