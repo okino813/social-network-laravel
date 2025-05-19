@@ -10,6 +10,13 @@ use App\Models\Comment;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'content',
+        'image',
+        'tags',
+        'user_id', // optionnel si tu remplis via relation
+    ];
 // nom de la fonction au singulier car 1 seul user en relation
 // cardinalité 1,1
     public function user()
