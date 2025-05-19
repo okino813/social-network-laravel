@@ -26,7 +26,8 @@ RUN <<EOF
     libzip-dev \
     libicu-dev \
     libonig-dev \
-    default-mysql-client
+    default-mysql-client \
+    curl
   locale-gen en_US.UTF-8
   localedef -f UTF-8 -i en_US en_US.UTF-8
   docker-php-ext-install \
@@ -42,6 +43,9 @@ RUN <<EOF
   chown phper:phper /composer
   chown phper:phper /workspace
   chown phper:phper /home/phper/.config/psysh
+   # Installer Node.js 18 et npm
+  curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+  apt-get install -y nodejs
   apt-get clean
   rm -rf /var/lib/apt/lists/*
 EOF

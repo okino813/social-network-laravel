@@ -9,3 +9,7 @@ Route::get('/', function () {
 
 // Redirige vers controller test
 Route::get('/test', [TestController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
