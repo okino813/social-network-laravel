@@ -1,15 +1,19 @@
 <?php
 
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('index');
+//});
 
 // Redirige vers controller test
-Route::get('/test', [TestController::class, 'index']);
 
+Route::get('/dashboard', [UserController::class, 'index'])->name('user.index');
+Route::resource('users', UserController::class)->except('create','store');
+Route::resource('posts', UserController::class)->except('create','store', 'destroy');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
