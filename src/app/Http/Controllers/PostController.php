@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,5 +48,42 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         return view('posts.show', compact('post'));
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id);
+        if (Auth::user()->id !== $post->user_id) {
+            return redirect()->route('posts.index')->with('error', 'Vous ne pouvez pas supprimer ce post.');
+        }
+        $post->delete();
+        return redirect()->route('user.index');
+    }
+
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update($id)
+    {
+        $post = Post::findOrFail($id);
+        if (Auth::user()->id !== $post->user_id) {
+            return redirect()->route('posts.index')->with('error', 'Vous ne pouvez pas modifier ce post.');
+        }
+
+        // Validation des champs du formulaire
+        $validatedData = request()->validate([
+            'content' => 'required|string|max:1000',
+            'image' => 'nullable|string|max:255',
+            'tags' => 'nullable|string|max:255',
+        ]);
+
+        // Mise à jour du post
+        $post->update($validatedData);
+
+        // Redirection avec message de succès
+        return redirect()->route('user.index');
     }
 }

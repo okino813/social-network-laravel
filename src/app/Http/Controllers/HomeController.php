@@ -16,7 +16,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -24,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->get(); // ou paginate(10) si tu veux la pagination
+        $posts = Post::with('user')->latest()->paginate(10);
         return view('index', compact('posts'));
     }
 }

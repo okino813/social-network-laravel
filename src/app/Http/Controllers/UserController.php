@@ -19,7 +19,10 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('login');
         }
-        $posts = $user->posts;
+
+        // Afficher les posts de l'utilisateur connecté pas page de 10
+         $posts = Post::where('user_id', $user->id)->paginate(10);
+
         return view('home', compact('posts'));
 
     }

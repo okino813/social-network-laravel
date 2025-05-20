@@ -3,56 +3,69 @@
     width: 100%;
     div{
         div{
-            div{
-                div{
+            .card{
+                .card-body{
+                    .item{
+                        display: grid !important;
+                        grid-template-columns:2fr 1fr;
+                        border: 1px solid #ccc; /* bordure grise claire */
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        border-radius: 20px;
+                        padding: 20px;
+
+                        .post {
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+                            gap: 20px;
+                            grid-column: 1;
+
+                                .info-user {
+                                    display: flex;
+                                    flex-direction: row;
+                                    align-items: center;
+                                    gap: 10px;
+
+                                    img {
+                                        width: 50px;
+                                        height: 50px; /* ajoute la hauteur ! */
+                                        object-fit: cover; /* pour remplir sans déformer */
+                                        border-radius: 50%; /* cercle parfait */
+                                    }
+
+                                    .username {
+                                        font-size: 20px;
+                                    }
+                                }
+
+                                .content {
+                                    padding: 10px;
+
+                                    p {
+                                        margin: 10px;
+                                    }
+                                }
+
+                                p {
+                                    margin: 0px;
+                                }
+                        }
+
+                        .btns{
+                            grid-column: 2;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 50px;
+
+                            a, button{
+                                width: 100px;
+                            }
+                        }
+                    }
 
 
-
-    .list-post{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: 20px;
-        background: red;
-
-        .item{
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #ccc;   /* bordure grise claire */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-radius: 20px;
-            padding: 20px;
-
-            .info-user{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: 10px;
-
-                img {
-                    width: 50px;
-                    height: 50px; /* ajoute la hauteur ! */
-                    object-fit: cover; /* pour remplir sans déformer */
-                    border-radius: 50%; /* cercle parfait */
-                }
-
-                .username{
-                    font-size: 20px;
-                }
-            }
-
-            .content{
-                padding: 10px;
-                p{
-                    margin: 10px;
-                }
-            }
-
-            p{
-                margin:0px;
-            }
-        }
-    }
                 }
             }
         }

@@ -3,6 +3,7 @@
 <section class="container">
 
     <div class="list-post">
+        {{ $posts->links() }}
 
         @foreach($posts as $post)
             <div class="item">
@@ -19,6 +20,8 @@
                     <p class="text-sm text-gray-500">Publié le {{ $post->created_at->format('d/m/Y') }}</p>
             </div>
         @endforeach
+
+
 
 
     </div>
